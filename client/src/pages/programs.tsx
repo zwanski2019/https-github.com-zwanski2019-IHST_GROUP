@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { GraduationCap, BookOpen, Code, Calculator } from "lucide-react";
 
@@ -64,7 +65,7 @@ export default function Programs() {
           <h1 className="font-aquawax text-4xl sm:text-5xl md:text-6xl text-center mb-12 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
             Our Programs
           </h1>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {programs.map((program, index) => (
               <Card key={index} className="bg-white/5 border-white/10">
@@ -75,9 +76,9 @@ export default function Programs() {
                     </div>
                     <h2 className="font-aquawax text-2xl">{program.title}</h2>
                   </div>
-                  
+
                   <p className="text-white/60 mb-6">{program.description}</p>
-                  
+
                   <Accordion type="single" collapsible>
                     <AccordionItem value="details">
                       <AccordionTrigger>Program Details</AccordionTrigger>
@@ -93,10 +94,12 @@ export default function Programs() {
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
-                  
-                  <Button className="w-full mt-6 bg-gradient-to-r from-[#92220F] to-[#995A4E] text-white hover:opacity-90">
-                    Enroll Now
-                  </Button>
+
+                  <Link href="/tutoring/contact">
+                    <Button className="w-full mt-6 bg-gradient-to-r from-[#92220F] to-[#995A4E] text-white hover:opacity-90">
+                      Enroll Now
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
