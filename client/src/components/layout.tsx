@@ -23,8 +23,6 @@ export default function Layout({ children, type }: LayoutProps) {
   ];
 
   const navigation = type === "ishtgroup" ? ishtgroupNavigation : tutoringNavigation;
-  const homeLink = type === "ishtgroup" ? "/ishtgroup" : "/tutoring";
-  const serviceName = type === "ishtgroup" ? "Ishtgroup" : "IHS Tutoring";
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-white overflow-hidden">
@@ -38,9 +36,9 @@ export default function Layout({ children, type }: LayoutProps) {
         <header className="border-b border-white/10">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex items-center justify-between">
-              <Link href={homeLink} className="flex items-center space-x-2">
+              <Link href={type === "ishtgroup" ? "/ishtgroup" : "/tutoring"} className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#92220F] to-[#995A4E]" />
-                <span className="font-aquawax text-xl">{serviceName}</span>
+                <span className="font-aquawax text-xl">{type === "ishtgroup" ? "Ishtgroup" : "IHS Tutoring"}</span>
               </Link>
               <div className="flex items-center space-x-6">
                 {navigation.map((item) => (

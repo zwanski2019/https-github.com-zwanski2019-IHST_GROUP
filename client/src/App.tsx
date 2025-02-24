@@ -16,7 +16,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Landing} />
-      <Route path="/ishtgroup">
+      <Route path="/ishtgroup*">
         <Layout type="ishtgroup">
           <Switch>
             <Route path="/ishtgroup" component={Home} />
@@ -26,7 +26,7 @@ function Router() {
           </Switch>
         </Layout>
       </Route>
-      <Route path="/tutoring">
+      <Route path="/tutoring*">
         <Layout type="tutoring">
           <Switch>
             <Route path="/tutoring" component={Home} />
