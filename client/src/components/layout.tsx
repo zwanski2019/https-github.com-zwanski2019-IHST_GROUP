@@ -3,15 +3,15 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
-  type: "tutoring" | "ishtgroup";
+  type?: "tutoring" | "ishtgroup";
 }
 
-export default function Layout({ children, type }: LayoutProps) {
+export default function Layout({ children, type = "tutoring" }: LayoutProps) {
   const [location] = useLocation();
 
   const tutoringNavigation = [
     { name: "Programs", href: "/programs" },
-    { name: "Tutoring", href: "/tutoring" },
+    { name: "Tutoring", href: "/tutoring/learn" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
@@ -22,8 +22,9 @@ export default function Layout({ children, type }: LayoutProps) {
     { name: "Contact", href: "/ishtgroup/contact" },
   ];
 
-  const navigation = type === "tutoring" ? tutoringNavigation : ishtgroupNavigation;
-  const homeLink = type === "tutoring" ? "/tutoring" : "/ishtgroup";
+  const navigation = type === "ishtgroup" ? ishtgroupNavigation : tutoringNavigation;
+  const homeLink = type === "ishtgroup" ? "/ishtgroup" : "/tutoring";
+  const serviceName = type === "ishtgroup" ? "Ishtgroup" : "IHS Tutoring";
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-white overflow-hidden">
@@ -39,7 +40,7 @@ export default function Layout({ children, type }: LayoutProps) {
             <nav className="flex items-center justify-between">
               <Link href={homeLink} className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#92220F] to-[#995A4E]" />
-                <span className="font-aquawax text-xl">{type === "tutoring" ? "IHS Tutoring" : "Ishtgroup"}</span>
+                <span className="font-aquawax text-xl">{serviceName}</span>
               </Link>
               <div className="flex items-center space-x-6">
                 {navigation.map((item) => (
