@@ -1,19 +1,19 @@
 import { Link, useLocation } from "wouter";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
-  type?: "tutoring" | "ishtgroup";
+  type: "tutoring" | "ishtgroup";
 }
 
-export default function Layout({ children, type = "tutoring" }: LayoutProps) {
+export default function Layout({ children, type }: LayoutProps) {
   const [location] = useLocation();
 
   const tutoringNavigation = [
-    { name: "Programs", href: "/programs" },
+    { name: "Programs", href: "/tutoring/programs" },
     { name: "Tutoring", href: "/tutoring/learn" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "About Us", href: "/tutoring/about" },
+    { name: "Contact", href: "/tutoring/contact" },
   ];
 
   const ishtgroupNavigation = [

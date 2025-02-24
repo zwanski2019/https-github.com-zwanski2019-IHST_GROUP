@@ -26,19 +26,20 @@ function Router() {
           </Switch>
         </Layout>
       </Route>
-      <Route>
+      <Route path="/tutoring">
         <Layout type="tutoring">
           <Switch>
             <Route path="/tutoring" component={Home} />
-            <Route path="/programs" component={Programs} />
+            <Route path="/tutoring/programs" component={Programs} />
             <Route path="/tutoring/learn" component={Tutoring} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/success" component={Success} />
+            <Route path="/tutoring/about" component={About} />
+            <Route path="/tutoring/contact" component={Contact} />
+            <Route path="/tutoring/success" component={Success} />
             <Route component={NotFound} />
           </Switch>
         </Layout>
       </Route>
+      <Route component={NotFound} />
     </Switch>
   );
 }
