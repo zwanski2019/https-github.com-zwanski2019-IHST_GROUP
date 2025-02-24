@@ -1,28 +1,19 @@
 import { Link, useLocation } from "wouter";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
-interface LayoutProps {
+interface TutoringLayoutProps {
   children: React.ReactNode;
-  type: "tutoring" | "ishtgroup";
 }
 
-export default function Layout({ children, type }: LayoutProps) {
+export default function TutoringLayout({ children }: TutoringLayoutProps) {
   const [location] = useLocation();
 
-  const tutoringNavigation = [
+  const navigation = [
     { name: "Programs", href: "/tutoring/programs" },
     { name: "Tutoring", href: "/tutoring/learn" },
     { name: "About Us", href: "/tutoring/about" },
     { name: "Contact", href: "/tutoring/contact" },
   ];
-
-  const ishtgroupNavigation = [
-    { name: "Solutions", href: "/ishtgroup/solutions" },
-    { name: "About Us", href: "/ishtgroup/about" },
-    { name: "Contact", href: "/ishtgroup/contact" },
-  ];
-
-  const navigation = type === "ishtgroup" ? ishtgroupNavigation : tutoringNavigation;
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-white overflow-hidden">
@@ -36,25 +27,27 @@ export default function Layout({ children, type }: LayoutProps) {
         <header className="border-b border-white/10">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex items-center justify-between">
-              <Link href={type === "ishtgroup" ? "/ishtgroup" : "/tutoring"} className="flex items-center space-x-2">
+              <Link href="/tutoring" className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#92220F] to-[#995A4E]" />
-                <span className="font-aquawax text-xl">{type === "ishtgroup" ? "Ishtgroup" : "IHS Tutoring"}</span>
+                <span className="font-aquawax text-xl">IHS Tutoring</span>
               </Link>
               <div className="flex items-center space-x-6">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`text-sm ${
-                      location === item.href ? "text-white" : "text-white/60 hover:text-white"
+                    className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
+                      location === item.href 
+                        ? "bg-white/10 text-white" 
+                        : "text-white/60 hover:bg-white/5 hover:text-white"
                     }`}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <Link href="/">
-                  <button className="bg-gradient-to-r from-[#92220F] to-[#995A4E] text-white px-4 py-2 rounded-md hover:opacity-90">
-                    Switch Service
+                <Link href="/ishtgroup">
+                  <button className="bg-gradient-to-r from-[#92220F] to-[#995A4E] text-white px-4 py-2 rounded-md hover:opacity-90 transition-all duration-200 hover:scale-105">
+                    Switch to ISHT Group
                   </button>
                 </Link>
               </div>
@@ -113,7 +106,7 @@ export default function Layout({ children, type }: LayoutProps) {
             </div>
 
             <div className="mt-8 pt-8 border-t border-white/10 text-center text-white/60">
-              <p>© 2024 International House of Sciences. All rights reserved.</p>
+              <p>© 2025 International House of Sciences. All rights reserved.</p>
             </div>
           </div>
         </footer>

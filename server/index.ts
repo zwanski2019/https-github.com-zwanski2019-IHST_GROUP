@@ -56,14 +56,37 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  // Handle port conflicts and use environment variable
+  const getAvailablePort = async (port: number): Promise<number> => {
+    const net = await import('net');
+    return new Promise((resolve) => {
+      const server = net.createServer();
+      server.on('error', () => resolve(getAvailablePort(port + 1)));
+      server.listen(port, () => {
+        server.close(() => resolve(port));
+      });
+    });
+  };
+
+  const startServer = async () => {
+    const defaultPort = process.env.PORT ? Number(process.env.PORT) : 5000;
+    const port = await getAvailablePort(defaultPort);
+
+    server.listen({
+      port,
+      host: "localhost",
+      reusePort: true,
+    }, () => {
+      log(`Server running at http://localhost:${port}`);
+    }).on('error', (err: NodeJS.ErrnoException) => {
+      if (err.code === 'EADDRINUSE') {
+        log(`Port ${port} is in use, trying next port...`);
+        startServer();
+      } else {
+        throw err;
+      }
+    });
+  };
+
+  await startServer();
 })();
