@@ -1,18 +1,8 @@
 {
   "build": {
     "env": {
-      "VITE_API_URL": "https://api.example.com"
-    },
-    "use": "@vercel/static-build",
-    "config": {
-      "distDir": "dist"
+      "NEXT_PUBLIC_BASE_URL": "https://api.example.com"
     }
   },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "framework": "vite"
+  "framework": "nextjs"
 }
