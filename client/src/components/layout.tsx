@@ -23,7 +23,7 @@ export default function Layout({ children, type }: LayoutProps) {
   ];
 
   const navigation = type === "tutoring" ? tutoringNavigation : ishtgroupNavigation;
-  const homeLink = type === "tutoring" ? "/" : "/ishtgroup";
+  const homeLink = type === "tutoring" ? "/tutoring" : "/ishtgroup";
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-white overflow-hidden">
@@ -53,7 +53,7 @@ export default function Layout({ children, type }: LayoutProps) {
                     {item.name}
                   </Link>
                 ))}
-                <Link href="/select">
+                <Link href="/">
                   <button className="bg-gradient-to-r from-[#92220F] to-[#995A4E] text-white px-4 py-2 rounded-md hover:opacity-90">
                     Switch Service
                   </button>
