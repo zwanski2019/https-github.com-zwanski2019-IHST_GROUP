@@ -39,7 +39,7 @@ export default function Landing() {
         }`}
         onMouseEnter={() => setHoveredSide("tutoring")}
         onMouseLeave={() => setHoveredSide(null)}
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/tutoring")}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#0B1120] to-[#1F2937] opacity-90" />
         <div className="relative z-10 text-white text-center max-w-lg">
